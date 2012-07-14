@@ -1,0 +1,58 @@
+img.RP_PostImage {
+	border: 2px dashed #00adef !important;
+	cursor: pointer !important;
+}
+
+	img.RP_PostImage:hover, img.RP_PostImageActive {
+		border: 2px solid #00adef !important;
+	}
+
+#RP_Dialog {
+	position: fixed;
+	top: 0;
+	left: 50%;
+	width: 450px;
+	margin-left: -243px;
+	padding: 0 18px 0 0;
+	z-index: 99999;
+	
+	background-color: #222 !important;
+	color: #ccc !important;
+	
+	font-size: 12pt;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-style: normal;
+	text-align: left;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #aaa;
+}
+
+#RP_Dialog iframe {
+	width: 450px;
+	height: 100px;
+	border: 0;
+}
+
+#RP_Dialog a {
+	color: #fff !important;
+	background: transparent none !important;
+	text-decoration: none !important;
+	border: 0 !important;
+}
+
+#RP_Dialog a:hover {
+	color: #000 !important;
+	background: #fff none !important;
+	text-decoration: none !important;
+	border: 0 !important;
+}
+
+#RP_Dialog a.close {
+	position: absolute !important;
+	top: 0 !important;
+	right: 0 !important;
+	padding: 3px 10px;
+	font-weight: bold;
+}

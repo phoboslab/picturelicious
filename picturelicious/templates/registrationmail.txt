@@ -1,0 +1,11 @@
+From: no-reply@picturelicious.net
+Subject: Welcome to %siteName%!
+
+Hello %userName%, 
+thank you for your registration at %siteName%.
+
+To activate your account, please click the following link
+%frontendPath%login/%validationString%
+
+
+Your %siteName% Team

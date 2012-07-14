@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+	<title>Picturelicious 2.0 - Image Grid Example Configurations</title>
+	<style type="text/css">
+body {
+	background-color: #222;
+	color: #fff;
+	font-family: Helvetica, Arial, Verdana, Sans-Serif;
+	font-size: 12pt;
+	padding: 0;
+	width: 660px;
+	margin: 0 auto 8em auto;
+}
+
+h1 {
+	font-size: 130%;
+	font-weight: normal;
+	padding: 4.2em 0 0 0;
+	margin: 0;
+	border-bottom: 1px solid #333;
+}
+
+h2 {
+	font-size: 100%;
+	font-weight: bold;
+	padding: 2.2em 0 0 0;
+	margin: 0;
+	border-bottom: 1px solid #333;
+}
+
+ul {
+	list-style-type: square;
+}
+
+ol > li {
+	margin: 0.5em 0;
+}
+
+dt, code, pre {
+	font-family:Courier New,Lucida Console,Bitstream Vera Sans Mono,monospace;
+}
+
+pre {
+	font-size: 90%;
+}
+dd {
+	margin-bottom: 0.8em;
+}
+
+p {
+	padding: 0;
+	margin: 1em 0 0 0;
+	line-height: 1.3em;
+}
+	</style>
+</head>
+<body>
+<h1>Picturelicious - Image Grid Example Configurations</h1>
+
+
+<h1>Quadratic Thumbs in 3 Different Sizes (Default Configuration)</h1>
+<h2>lib/config.php</h2>
+<pre>
+public static $gridView = array(
+	'gridSize' => 64,
+	'gridWidth' => 12,
+	'borderWidth' => 2,
+	'classes' => array(
+		'b2' => array( 'width'=>1, 'height'=>1, 'percentage'=>0.60, 'dir'=>'64x64' ),
+		'b1' => array( 'width'=>2, 'height'=>2, 'percentage'=>0.35, 'dir'=>'128x128' ),
+		'b0' => array( 'width'=>3, 'height'=>3, 'percentage'=>0.05, 'dir'=>'192x192' )
+	),
+);
+</pre>
+
+<h2>media/picturelicious.js</h2>
+<pre>
+var gridSize = 64;
+var gridMinWidth = 6;
+var gridWidth = 0;
+var grid = null;
+var boxDef = {
+	'b0': {'width': 3, 'height': 3},
+	'b1': {'width': 2, 'height': 2},
+	'b2': {'width': 1, 'height': 1}
+};
+</pre>
+
+<h2>media/styles.css</h2>
+<pre>
+.b0 {
+	width: 192px;
+	height: 192px;
+}
+.b1 {
+	width: 128px;
+	height: 128px;
+}
+.b2 {
+	width: 64x;
+	height: 64px;
+}
+</pre>
+
+
+
+
+
+<h1>Large Spacing between Thumbnails</h1>
+<h2>lib/config.php</h2>
+<pre>
+public static $gridView = array(
+	'gridSize' => 88,
+	'gridWidth' => 12,
+	'borderWidth' => 2,
+	'classes' => array(
+		'b2' => array( 'width'=>1, 'height'=>1,	'percentage'=>0.6,	'dir'=>'64x64' ),
+		'b1' => array( 'width'=>2, 'height'=>2,	'percentage'=>0.35,	'dir'=>'128x128' ),
+		'b0' => array( 'width'=>3, 'height'=>3,	'percentage'=>0.05,	'dir'=>'192x192' )
+	),
+);
+</pre>
+
+<h2>media/picturelicious.js</h2>
+<pre>
+var gridSize = 88;
+var gridMinWidth = 6;
+var gridWidth = 0;
+var grid = null;
+var boxDef = {
+	'b0': {'width': 3, 'height': 3},
+	'b1': {'width': 2, 'height': 2},
+	'b2': {'width': 1, 'height': 1}
+};
+</pre>
+
+<h2>media/styles.css</h2>
+<pre>
+.b0 {
+	padding-left: 32px;
+	padding-top: 32px;
+	width: 192px;
+	height: 192px;
+}
+.b1 {
+	padding-left: 24px;
+	padding-top: 24px;
+	width: 128px;
+	height: 128px;
+}
+.b2 {
+	padding-left: 12px;
+	padding-top: 12px;
+	width: 64x;
+	height: 64px;
+}
+</pre>
+
+
+
+
+<h1>4 Thumbnail sizes in 4:3 and 2:3 aspect ratios</h1>
+<h2>lib/config.php</h2>
+<pre>
+public static $gridView = array(
+	'gridSize' => 32,
+	'gridWidth' => 24,
+	'borderWidth' => 2,
+	'classes' => array(
+		'b3' => array( 'width'=>2, 'height'=>3,	'percentage'=>0.58,	'dir'=>'64x96' ),
+		'b2' => array( 'width'=>4, 'height'=>3,	'percentage'=>0.3,	'dir'=>'128x96' ),
+		'b1' => array( 'width'=>4, 'height'=>6,	'percentage'=>0.10,	'dir'=>'128x192' ),
+		'b0' => array( 'width'=>6, 'height'=>9,	'percentage'=>0.02,	'dir'=>'192x288' )
+	),
+);
+</pre>
+
+<h2>media/picturelicious.js</h2>
+<pre>
+var gridSize = 32;
+var gridMinWidth = 6;
+var gridWidth = 0;
+var grid = null;
+var boxDef = {
+	'b0': {'width': 6, 'height': 9},
+	'b1': {'width': 4, 'height': 6},
+	'b2': {'width': 4, 'height': 3}
+	'b3': {'width': 2, 'height': 3}
+};
+</pre>
+
+<h2>media/styles.css</h2>
+<pre>
+.b0 {
+	width: 192px;
+	height: 288px;
+}
+.b1 {
+	width: 128px;
+	height: 192px;
+}
+.b2 {
+	width: 128px;
+	height: 96px;
+}
+.b3 {
+	width: 64px;
+	height: 96px;
+}
+</pre>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+	<title>Picturelicious 2.0 - Readme</title>
+	<style type="text/css">
+body {
+	background-color: #222;
+	color: #fff;
+	font-family: Helvetica, Arial, Verdana, Sans-Serif;
+	font-size: 12pt;
+	padding: 0;
+	width: 660px;
+	margin: 0 auto 8em auto;
+}
+
+h1 {
+	font-size: 130%;
+	font-weight: normal;
+	padding: 2.2em 0 0 0;
+	margin: 0;
+	border-bottom: 1px solid #333;
+}
+
+h2 {
+	font-size: 100%;
+	font-weight: bold;
+	padding: 2.2em 0 0 0;
+	margin: 0;
+	border-bottom: 1px solid #333;
+}
+
+ul {
+	list-style-type: square;
+}
+
+ol > li {
+	margin: 0.5em 0;
+}
+
+dt, code {
+	font-family:Courier New,Lucida Console,Bitstream Vera Sans Mono,monospace;
+}
+dd {
+	margin-bottom: 0.8em;
+}
+
+p {
+	padding: 0;
+	margin: 1em 0 0 0;
+	line-height: 1.3em;
+}
+	</style>
+</head>
+<body>
+<h1>Picturelicious v2.0</h1>
+
+<h1>Installation</h1>
+<ol>
+	<li>
+		<p>
+			Edit the <code>lib/config.php</code>. Things you absolutely need to change 
+			are the <code>$frontendPath</code> and <code>$db</code> (Database) settings.
+		</p>
+	</li>
+	<li>
+		<p>
+			Upload everything from the <code>picturelicious/</code> directory, so that the 
+			<code>index.php</code> is at the root of your installation. Make sure you also
+			upload the <code>.htacces</code> file (it is initially hidden on MacOS).
+		</p>
+	</li>
+	<li>
+		<p>
+			Make sure PHP has writing permissions on the following directories:
+		</p>
+		<ul>
+			<li>cache</li>
+			<li>data/avatars</li>
+			<li>data/images</li>
+			<li>data/thumbs</li>
+			<li>import</li>
+		</ul>
+		<p>
+			You can change permissions (chmod) with your FTP client. Many server configurations
+			require you to set permissions to <code>0777</code> (all permissions set).
+		</p>
+	</li>
+	<li>
+		<p>
+			Import the <code>picturelicious.sql</code> with PHPMyAdmin into your database.
+		</p>
+	</li>
+	<li>
+		<p>
+			Register a new user on your site. You can give this user Admin rights, by changing
+			the <code>admin</code> value for this user to <code>1</code> in the <code>pl_users</code> 
+			table. Again, use PHPMyAdmin to do so.
+		</p>
+	
+		<p>
+			<strong>Important:</strong> If you want to use the vbb-Forum integration, you have to install
+			the forum and activate it in your config before(!) any users are registered.
+		</p>
+	</li>
+</ol>
+
+<h1>Mass importing images</h1>
+<p>
+	You can import many images at once. Just upload all images you want to appear on your site into the
+	<code>import/</code> directory of your installation, log in as an admin user and choose <em>Import</em>
+	from the menu. You can then click on <em>Import Images</em> at the bottom of the page. Please note that 
+	this may take a while.
+</p>
+
+
+<h1>Customizing the Image Grid</h1>
+<p>
+	The Image Grid or <em>"Image Cloud"</em> is highly customizable but requires some understanding.
+	When a page is loaded, all images are assigned to one of the available thumbnail sizes and the Image Grid 
+	is then generated in a fixed width. This is important for users who have Javascript disabled. When Javascript is
+	enabled, the Image Grid will adept to the available width of the browser window. The width and height of each
+	thumbnail in this grid is also specified in the <code>style.css</code>. Therefore, if you want to change
+	the layout, you have to edit three different files:
+</p>
+	<ul>
+		<li>lib/config.php ($gridView)</li>
+		<li>media/picturelicious.js (boxDef, gridSize)</li>
+		<li>media/style.css (.b0, .b1, .b2)</li>
+	</ul>
+<p>
+	The Image Grid is ultimately defined by the different thumbnail sizes that are available. In the default configuration,
+	thumbnails are generated in 3 different, qudratic sizes 64x64, 128x128 and 192x192. Since the gridSize is set to 64, 
+	the size of the thumbnails is only specified by 1, 2 or 3 - a multiple of the gridSize. 
+</p>
+<p>
+	The percentage setting in the <code>lib/config.php</code> specifies how many of the images are assigned to each of the
+	box definitions. All of these percentage settings should add up to 1. The order of these box definitions is also important:
+	the first definition is the "least important", while the last one is the "most important", meaning that images with a bad rating
+	will be assigned to the first one, while images with a good rating, will be assigned to the last one.
+</p>
+<p>
+	Take a look at the <code>image-grid-examples.html</code> for some example configurations.
+</p>
+<p>
+	Please note that whenever you change the size of one of these thumbnail definitions, the thumbnails have to be regenerated. There is
+	no tool included for doing so <em>on the fly</em>. The simplest solution is, to move all images into the <code>import/</code>
+	directory, clear the database and import these images again.
+</p>
+
+<h1>Using the Random Thumbnail Widget</h1>
+<p>
+	To promote your Picturelicious site on other websites, you can easily embed some thumbnails from
+	Picturelicious by using the following code snippet:
+</p>
+<p>
+	<code>&lt;script type=&quot;text/javascript&quot; src=&quot;http://example.com/random/4/64x64/&quot;&gt;</script></code>
+</p>
+<p>
+	This will insert 4 thumbnails in 64x64 wherever you put this snippet to. Also take a look at the 
+	configuration (Random Thumbnail Widget).
+</p>
+
+
+
+<h1>Configuration</h1>
+<p>
+	All configuration settings can be found in <code>lib/config.php</code>. Following is a list of 
+	these settings and their meaning. Many of this settings are only needed for fine tuning.
+</p>
+
+<h2>Names and URLs for your installation</h2>
+<dl>
+	<dt>$absolutePath</dt>
+	<dd>
+		The absolute path to your Picturelicious installation from your domain root. If Picturelicious 
+		is installed on <code>http://example.com/picturelicious/</code>, your $absolutePath must be set to 
+		<code>/picturelicious/</code>. If Picturelicious is not in a sub-directory, the default setting (<code>/</code>)
+		is the right one.
+	</dd>
+	<dt>$frontendPath</dt>
+	<dd>
+		The complete URL to you Picturelicious installation.
+	</dd>
+	
+	<dt>$siteName</dt>
+	<dd>
+		The name of your site. This value is extensivly used in numerous templates and the registration mail
+	</dd>
+	
+	<dt>$siteTitle</dt>
+	<dd>
+		The title of your site to appear in the browser window's title bar
+	</dd>
+</dl>
+
+<h2>Cookies</h2>
+<dl>
+	<dt>$sessionCookie</dt>
+	<dd>
+		The name of the session cookie - a normal user will never see this
+	</dd>
+	
+	<dt>$rememberCookie</dt>
+	<dd>
+		The name of the remember cookie - a normal user will never see this
+	</dd>
+</dl>
+
+<h2>Spam protection</h2>
+<dl>
+	<dt>$ipLockTime</dt>
+	<dd>
+		The time in seconds to lock an IP-adress from voting for the same image again
+	</dd>
+	
+	<dt>$uploadLockTime</dt>
+	<dd>
+		The time in seconds to which the <code>$maxNumUploads</code> setting corresponds
+	</dd>
+	
+	<dt>$maxNumUploads</dt>
+	<dd>
+		The maximum number of image uploads allowed in <code>$uploadLockTime</code> seconds
+	</dd>
+</dl>
+
+<h2>User scores</h2>
+<dl>
+	<dt>$votingScore</dt>
+	<dd>
+		The score a user gains for voting for an image
+	</dd>
+	
+	<dt>$postScore</dt>
+	<dd>
+		The score a user gainr for posting an image
+	</dd>
+	
+	<dt>$tagScorePerChar</dt>
+	<dd>
+		The score a user gains for each character he writes in a tag
+	</dd>
+	
+	<dt>$tagScoreMax</dt>
+	<dd>
+		The maximum score when tagging an image
+	</dd>
+</dl>
+
+<h2>Misc settings</h2>
+<dl>
+	<dt>$usersPerPage</dt>
+	<dd>
+		The number of users to show on one page in the user list
+	</dd>
+	
+	<dt>$defaultChmod</dt>
+	<dd>
+		The permissions to use when creating a new directory. Chances are, you have to
+		keep this setting at 0777
+	</dd>
+	
+	<dt>$templates</dt>
+	<dd>
+		The directory in which all templates are stored
+	</dd>
+	
+	<dt>$keywordWordSeperator</dt>
+	<dd>
+		The seperator between words when a keyword for an image is generated. Feel free to change this to
+		'<code>_</code>' or an empty value for no word seperation
+	</dd>
+</dl>
+
+<dl>
+	<dt>$colorSearchDev</dt>
+	<dd>
+		The maximum deviation for each color channel (R, G, B) when searching for colors
+	</dd>
+</dl>
+<h2>Random Thumbnail Widget</h2>
+<dl>
+	<dt>$maxRandomThumbs</dt>
+	<dd>
+		Maximum number of thumbnails to show on the random thumb widget
+	</dd>
+	
+	<dt>$minRandomScore</dt>
+	<dd>
+		Minimum score of an image to be shown on the random thumb widget
+	</dd>
+</dl>
+
+<h2>vbb Forum integration</h2>
+<dl>
+	<dt>$vbbIntegration</dt>
+	<dd>
+		<dl>
+			<dt>enabled</dt>
+			<dd>Whether to enable the vbb integration (true|false)</dd>
+			<dt>path</dt>
+			<dd>relative path to the installation directory of vbb-Forum</dd>
+		</dl>
+	</dd>
+</dl>
+
+<h2>Cache settings</h2>
+<dl>
+	<dt>$cache</dt>
+	<dd>
+		<dl>
+			<dt>enabled</dt>
+			<dd>Whether to enable the cache</dd>
+			<dt>path</dt>
+			<dd>relative path to the cache directory</dd>
+			<dt>clearEvery</dt>
+			<dd>The cache is cleared at every image upload or at least every <em>n</em>'th vote</dd>
+		</dl>
+	</dd>
+</dl>
+
+<h2>Database settings</h2>
+<dl>
+	<dt>$db</dt>
+	<dd>
+		<dl>
+			<dt>host</dt>
+			<dd>The hostname of your database server (in most cases this should be <code>localhost</code>)</dd>
+			<dt>database</dt>
+			<dd>The name of the database where all the Picturelicious tables reside</dd>
+			<dt>user</dt>
+			<dd>username for the database login</dd>
+			<dt>password</dt>
+			<dd>password for the database login</dd>
+			<dt>prefix</dt>
+			<dd>prefix for all tables (note that you manually have to rename your tables if you want to change this setting)</dd>
+		</dl>
+	</dd>
+</dl>
+
+<h2>Image processing and thumbnail creation</h2>
+<dl>
+	<dt>$images</dt>
+	<dd>
+		<dl>
+			<dt>thumbsPerPage</dt>
+			<dd>Number of images to show in the browse mode (i.e. the image cloud)</dd>
+			<dt>imagePath</dt>
+			<dd>File path to the images</dd>
+			<dt>thumbPath</dt>
+			<dd>File path to the thumbnails</dd>
+			<dt>avatarsPath</dt>
+			<dd>File path to the avatar images</dd>
+			<dt>maxDownload</dt>
+			<dd>Maximum file size when copying images from a remote URL</dd>
+			<dt>jpegQuality</dt>
+			<dd>Quality level for the created thumbnails (0-100)</dd>
+			<dt>sharpen</dt>
+			<dd>Whether to sharpen thumbnails after resizing. <em>Note:</em> This only works with PHP 5.1 and newer and is
+				automatically disabled on older versions.</dd>
+		</dl>
+	</dd>
+</dl>
+
+<h2>Grid Solver settings</h2>
+<dl>
+	<dt>$gridView</dt>
+	<dd>Refer to the Grid View section in this readme</dd>
+</dl>
+
+</body>
+</html>

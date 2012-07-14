@@ -1,0 +1,7 @@
+RewriteEngine on 
+
+#not a real file or directory
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]*|search/.*)$ index.php?s=$1
+
