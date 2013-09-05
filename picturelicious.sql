@@ -12,9 +12,9 @@ CREATE TABLE `pl_comments` (
 CREATE TABLE `pl_imagecolors` (
   `id` int(11) NOT NULL auto_increment,
   `imageId` int(11) NOT NULL,
-  `r` tinyint(3) unsigned NOT NULL default '0',
-  `g` tinyint(3) unsigned NOT NULL default '0',
-  `b` tinyint(3) unsigned NOT NULL default '0',
+  `r` SMALLINT(3) NOT NULL default '0',
+  `g` SMALLINT(3) NOT NULL default '0',
+  `b` SMALLINT(3) NOT NULL default '0',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
