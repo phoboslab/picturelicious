@@ -49,6 +49,7 @@
 	
 	<div id="imageInfo">
 		<div class="rating">
+			<input type="hidden" value="<?php echo $iv->image['id'];?>" id="imageId"/>
 			<div class="ratingBase">
 				<div class="ratingCurrent" id="currentRating" style="width: <?php echo $iv->image['votes'] > 0 ? ($iv->image['score']) / 0.05 : 0;?>px"></div>
 				<div class="ratingRate" id="userRating">

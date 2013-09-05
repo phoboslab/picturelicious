@@ -398,3 +398,103 @@ function s() {
 	}
 	return false;
 }
+
+
+// keyboard shortcuts
+var keyCodes = {
+	left:   37,     // navigate forward
+	up:     38,     //
+	right:  39,     // navigate back
+	down:   40,     //
+	one: 	49,     // vote 1*
+	two: 	50,     // vote 2*
+	three: 	51,     // vote 3*
+	four: 	52,     // vote 4*
+	five: 	53,     // vote 5*
+	num1: 	97,     // vote 1*
+	num2: 	98,     // vote 2*
+	num3: 	99,     // vote 3*
+	num4: 	100,    // vote 4*
+	num5: 	101,    // vote 5*
+	plus: 	107,    // toggle image display size
+	minus: 	109,    // toggle image display size
+	c: 	    67,     // focus cursor into comments field
+	f: 	    70,     // toggle image display size
+	h:  	72,     // navigate to main page
+	l:   	76,     // login
+	r:  	82,     // load random image // TODO
+	s:  	83,     // focus cursor into search field
+	u:  	85      // navigate to upload form
+};
+	
+document.onkeydown = function( event ){
+	var tag = event.target.tagName;
+	if( tag == 'INPUT' || tag == 'TEXTAREA' ) { return; }
+	
+	var imageId = $('imageId') ? parseInt($('imageId').value) : 0;
+		
+	switch( event.keyCode || event.which ){
+		case keyCodes.left:
+			$('prevBar').click();
+			return false;
+			break;
+		case keyCodes.right:
+			$('nextBar').click();
+			return false;
+			break;
+		case keyCodes.one:
+		case keyCodes.num1:
+			rate(imageId,1);
+			return false;
+			break;
+		case keyCodes.two:
+		case keyCodes.num2:
+			rate(imageId,2);
+			return false;
+			break;
+		case keyCodes.three:
+		case keyCodes.num3:
+			rate(imageId,3);
+			return false;
+			break;
+		case keyCodes.four:
+		case keyCodes.num4:
+			rate(imageId,4);
+			return false;
+			break;
+		case keyCodes.five:
+		case keyCodes.num5:
+			rate(imageId,5);
+			return false;
+			break;
+		case keyCodes.plus:
+		case keyCodes.minus:
+		case keyCodes.f:
+			swap($('image'), 'scaled', 'full')
+			return false;
+			break;
+		case keyCodes.c:
+			$('commentContent').focus();
+			return false;
+			break;
+		case keyCodes.h:
+			$('logo').click();
+			return false;
+			break;
+		case keyCodes.l:
+			$('login').click();
+			return false;
+			break;
+		case keyCodes.r:
+			// TODO
+			break;
+		case keyCodes.s:
+			$('q').focus();
+			return false;
+			break;
+		case keyCodes.u:
+			$('upload').click();
+			return false;
+			break;
+	}
+}
