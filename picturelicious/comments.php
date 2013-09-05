@@ -41,7 +41,7 @@ include( 'templates/header.tpl.php' );
 					</div>
 				<?php } ?>
 			</div>
-			<?php echo $c['content']; ?>
+			<?php echo htmlspecialchars($c['content']); ?>
 		</div>
 	<?php } ?>
 </div>
